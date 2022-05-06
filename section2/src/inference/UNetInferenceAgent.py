@@ -63,7 +63,7 @@ class UNetInferenceAgent:
         for slc in range(len(volume)):
 
             tsr_test = torch.from_numpy(volume[slc,:,:].astype(np.single)/np.max(volume[slc,:,:])).unsqueeze(0).unsqueeze(0)
-            pred = model(tsr_test.to(device))
+            pred = pred = self.model(tsr_test.to(self.device))(tsr_test.to(self.device))
             pred = np.squeeze(pred.cpu().detach())
             slices.append(pred)
 
